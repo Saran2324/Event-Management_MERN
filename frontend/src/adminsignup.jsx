@@ -4,7 +4,7 @@ import axios from "axios";
 import logow from "./logow.png";
 import logo3 from "./logo3.png";
 
-function Signup() {
+function AdminSignup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,7 @@ function Signup() {
     if (!validateForm()) return;
 
     try {
-      const response = await axios.post("http://localhost:8000/signup", {
+      const response = await axios.post("http://localhost:8000/adminsignup", {
         email: email,
         password: password,
         username: username,
@@ -63,7 +63,6 @@ function Signup() {
           maxHeight: "80px",
           boxShadow: "0 1px 10px rgba(0, 0, 0, 0.9)",
           backgroundColor: "navy",
-          
         }}
       >
         <img
@@ -164,4 +163,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default AdminSignup;

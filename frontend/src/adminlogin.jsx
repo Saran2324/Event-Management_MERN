@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../src/App.css";
 import logo3 from "./logo3.png";
 import logow from "./logow.png";
 
-function Login() {
+function Adminlogin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState(""); // New state for username
@@ -15,13 +15,13 @@ function Login() {
   async function submit(e) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/login", {
+      const response = await axios.post("http://localhost:8000/adminlogin", {
         email,
         username, // Include username in the request
         password,
       });
       if (response.data === "exist") {
-        navigate("/home", { state: { email, username } }); // Pass both email and username
+        navigate("/adminprof", { state: { email, username } }); // Pass both email and username
       } else if (response.data === "not exist") {
         setmessage("Email or Password you specified is invalid.");
       }
@@ -59,7 +59,7 @@ function Login() {
             color: "transparent",
           }}
         >
-          Kongu&nbsp;Engineering&nbsp;College
+          Kongu Engineering College
         </h2>
         <button
           className="success"
@@ -84,24 +84,10 @@ function Login() {
             Contact
           </a>
         </button>
-        <Link
-          onMouseOver={(e) => (e.target.style.color = "red")}
-          onMouseOut={(e) => (e.target.style.color = "white")}
-          to="/adminlogin"
-          style={{
-            color: "white",
-            margin: "35px 600px",
-            textDecoration: "none",
-            fontSize: "15px",
-            fontWeight: "bold",
-          }}
-        >
-          AdminLogin
-        </Link>
       </header>
       <form className="newform" onSubmit={submit}>
         <div className="page">
-          <h1>Login</h1>
+          <h1>Admin Login</h1>
           <input
             type="email"
             id="email"
@@ -143,13 +129,10 @@ function Login() {
           <button className="newbtn" type="submit">
             Login
           </button>
-          <p>
-            Do you have an account? <Link to="/signup">Sign up</Link>
-          </p>
         </div>
       </form>
     </>
   );
 }
 
-export default Login;
+export default Adminlogin;
